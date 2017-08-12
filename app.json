@@ -1,0 +1,7 @@
+{
+    "name": "Java Web Heroku Template",
+    "description": "Template of a Java web app using JPA and Postgress for persistance",
+    "image": "heroku/java",
+    "addons": ["heroku-postgresql"]
+}
+
