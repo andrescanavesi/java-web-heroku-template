@@ -73,24 +73,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.6</version>
+                <version>2.3</version>
                 <executions>
                     <execution>
-                        <phase>validate</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>copy</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${endorsed.dir}</outputDirectory>
-                            <silent>true</silent>
                             <artifactItems>
-                                <artifactItem>
-                                    <groupId>javax</groupId>
-                                    <artifactId>javaee-endorsed-api</artifactId>
-                                    <version>7.0</version>
-                                    <type>jar</type>
-                                </artifactItem>
-
                                 <!-- required for heroku deployment -->
                                 <artifactItem>
                                     <groupId>com.github.jsimone</groupId>
@@ -100,7 +91,9 @@
                                 </artifactItem>
 
                             </artifactItems>
+
                         </configuration>
+
                     </execution>
                 </executions>
             </plugin>
