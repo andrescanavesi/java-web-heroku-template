@@ -5,13 +5,15 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="content">
-        <h1>Welcome</h1>
 
-        <a href="crud.xhtml">Crud examples</a> | <a href="salesforce.xhtml">Salesforce examples</a>
+
+    <ui:define name="content">
+        <h:form id="form">
+            <p:growl showDetail="true" showSummary="true" sticky="false" />
+            <p:commandButton value="save user" actionListener="#{crudManagedBean.saveUser()}" update="form" />
+        </h:form>
     </ui:define>
 
 
+
 </ui:composition>
-
-

@@ -19,6 +19,9 @@ public class AppInitServletListener implements ServletContextListener {
 
     private static final Logger LOG = Logger.getLogger(AppInitServletListener.class.getName());
 
+    /**
+     * To manage persistence
+     */
     private static EntityManagerFactory emf;
 
     @Override
@@ -33,6 +36,10 @@ public class AppInitServletListener implements ServletContextListener {
         emf.close();
     }
 
+    /**
+     *
+     * @return
+     */
     public static EntityManager createEntityManager() {
         if (emf == null) {
             throw new IllegalStateException("Context is not initialized yet.");

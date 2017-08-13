@@ -14,6 +14,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
+ * Base of all DAOs that want to persist in DB.
  *
  * @author Andres Canavesi
  * @param <T>
