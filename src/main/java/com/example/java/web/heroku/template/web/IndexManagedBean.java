@@ -45,7 +45,7 @@ public class IndexManagedBean {
             LOG.info("User saved");
 
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "User saved"));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "User " + userEntity.getName() + " saved"));
         } catch (Exception e) {
             LOG.log(Level.SEVERE, e.getMessage(), e);
             FacesContext context = FacesContext.getCurrentInstance();

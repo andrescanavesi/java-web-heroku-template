@@ -1,6 +1,7 @@
 package com.example.java.web.heroku.template.daos;
 
 import com.example.java.web.heroku.template.entities.BaseEntity;
+import com.example.java.web.heroku.template.web.AppInitServletListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,9 +10,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
@@ -26,11 +25,6 @@ public abstract class DaoBase<T extends BaseEntity> {
     /**
      *
      */
-    protected EntityManagerFactory entityManagerFactory;
-
-    /**
-     *
-     */
     protected EntityManager entityManager;
 
     /**
@@ -39,18 +33,7 @@ public abstract class DaoBase<T extends BaseEntity> {
     protected Class<T> type;
 
     private DaoBase() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("myPU");
-
-    }
-
-    private void tryToCloseEntityManager() {
-        try {
-            if (entityManager != null) {
-                entityManager.close();
-            }
-        } catch (Exception e) {
-            throw new IllegalStateException("Error closing entity manager", e);
-        }
+        entityManager = AppInitServletListener.createEntityManager();
 
     }
 
@@ -98,15 +81,9 @@ public abstract class DaoBase<T extends BaseEntity> {
      * @return
      */
     private T create(T t) {
-        try {
-            entityManager = entityManagerFactory.createEntityManager();
-            entityManager.getTransaction().begin();
-            entityManager.persist(t);
-            entityManager.getTransaction().commit();
-        } finally {
-            tryToCloseEntityManager();
-        }
-
+        entityManager.getTransaction().begin();
+        entityManager.persist(t);
+        entityManager.getTransaction().commit();
         return t;
 
     }

@@ -6,10 +6,10 @@
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <!-- These are test credentials -->
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-107-20-255-96.compute-1.amazonaws.com/d59ee1tudau4ka?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
-            <property name="javax.persistence.jdbc.user" value="yaotocjcczilts"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-184-73-249-56.compute-1.amazonaws.com/d4mtdo44hvridj?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
+            <property name="javax.persistence.jdbc.user" value="ficrrxfpufygbq"/>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="javax.persistence.jdbc.password" value="3688e2a1dad74a6c7888836151d5a16005b199646a118c1a4ce68dcca1aaf290"/>
+            <property name="javax.persistence.jdbc.password" value="e3e9bdab038dfdb17e7a505f7b8b367769f944a0063143fda9b869e6077e17a5"/>
             <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
         </properties>
     </persistence-unit>
