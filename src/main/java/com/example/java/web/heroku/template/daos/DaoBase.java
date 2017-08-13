@@ -40,10 +40,10 @@ public abstract class DaoBase<T extends BaseEntity> {
 
     private DaoBase() {
         entityManagerFactory = Persistence.createEntityManagerFactory("myPU");
-        entityManager = entityManagerFactory.createEntityManager();
+
     }
 
-    private void tryCloseEntityManager() {
+    private void tryToCloseEntityManager() {
         try {
             if (entityManager != null) {
                 entityManager.close();
@@ -98,10 +98,15 @@ public abstract class DaoBase<T extends BaseEntity> {
      * @return
      */
     private T create(T t) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(t);
-        entityManager.getTransaction().commit();
-        entityManager.refresh(t);
+        try {
+            entityManager = entityManagerFactory.createEntityManager();
+            entityManager.getTransaction().begin();
+            entityManager.persist(t);
+            entityManager.getTransaction().commit();
+        } finally {
+            tryToCloseEntityManager();
+        }
+
         return t;
 
     }
