@@ -2,6 +2,7 @@ package com.example.java.web.heroku.template.web;
 
 import com.example.java.web.heroku.template.daos.DaoUsers;
 import com.example.java.web.heroku.template.entities.UserEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -25,12 +26,17 @@ public class CrudManagedBean {
 
     private static final Logger LOG = Logger.getLogger(CrudManagedBean.class.getName());
 
+    private UserEntity user = new UserEntity();
+    private List<UserEntity> users;
+    private DaoUsers daoUsers;
+
     /**
      *
      */
     @PostConstruct
     public void init() {
-
+        daoUsers = new DaoUsers();
+        users = daoUsers.findAllUsers(0, 100);
     }
 
     /**
@@ -38,22 +44,28 @@ public class CrudManagedBean {
      */
     public void saveUser() {
         try {
-            LOG.info("Saving user...");
-            UserEntity userEntity = new UserEntity();
-            userEntity.setName("test" + Math.random());
-
-            DaoUsers daoUsers = new DaoUsers();
-            daoUsers.save(userEntity);
-
-            LOG.info("User saved");
+            daoUsers.save(user);
+            users = daoUsers.findAllUsers(0, 100);
 
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "User " + userEntity.getName() + " saved"));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "User " + user.getName() + " saved"));
         } catch (Exception e) {
             LOG.log(Level.SEVERE, e.getMessage(), e);
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
         }
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public List<UserEntity> getUsers() {
+        return users;
     }
 
 }

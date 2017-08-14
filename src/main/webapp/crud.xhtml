@@ -10,7 +10,29 @@
     <ui:define name="content">
         <h:form id="form">
             <p:growl showDetail="true" showSummary="true" sticky="false" />
-            <p:commandButton value="save user" actionListener="#{crudManagedBean.saveUser()}" update="form" />
+
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Name: " for="name"/>
+                <p:inputText value="#{crudManagedBean.user.name}" required="true" requiredMessage="Empty name" id="name" />
+
+                <p:outputLabel value="" />
+                <p:commandButton value="save user" actionListener="#{crudManagedBean.saveUser()}" update="form" />
+            </p:panelGrid>
+
+            <p:dataTable  var="user" id="usersTable"
+                          value="#{crudManagedBean.users}"
+                          reflow="true" emptyMessage="No users">
+                <p:column headerText="#"  width="30">
+                    <h:outputText value="#{user.id}" />
+                </p:column>
+
+                <p:column headerText="Name"  >
+                    <h:outputText value="#{user.name}" />
+                </p:column>
+
+            </p:dataTable>
+
+
         </h:form>
     </ui:define>
 

@@ -4,6 +4,7 @@ import com.example.java.web.heroku.template.entities.BaseEntity;
 import com.example.java.web.heroku.template.web.AppInitServletListener;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -158,4 +159,20 @@ public abstract class DaoBase<T extends BaseEntity> {
         }
 
     }
+
+    public List<T> findByLikeField(String fieldName, String fieldValue) {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("fieldValue", "%" + fieldValue + "%");
+
+        StringBuilder builder = new StringBuilder(" SELECT t FROM ");
+        builder.append(type.getSimpleName());
+        builder.append(" t ");
+        builder.append(" WHERE t. ");
+        builder.append(fieldName);
+        builder.append(" LIKE ");
+        builder.append(" :fieldValue ");
+        String query = builder.toString();
+        return findWithQueryString(query, parameters, 0, 100);
+    }
+
 }

@@ -9,10 +9,11 @@ import javax.persistence.Table;
  * @author Andres Canavesi
  */
 @Entity
-@Table(name = "users")
+@Table(name = UserEntity.TABLE_NAME)
 public class UserEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    public static final String TABLE_NAME = "users";
 
     private String name;
 
