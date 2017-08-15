@@ -20,7 +20,7 @@ public class DaoUsers extends DaoBase<UserEntity> {
 
     public List<UserEntity> findAllUsers(int start, int end) {
         StringBuilder query = new StringBuilder();
-        query.append("SELECT u FROM ").append(type.getSimpleName()).append(" u");
+        query.append("SELECT u FROM ").append(type.getSimpleName()).append(" u ").append(" ORDER BY createdAt DESC ");
         Map parameters = new HashMap(); //no parameters
         return findWithQueryString(query.toString(), parameters, start, end);
     }

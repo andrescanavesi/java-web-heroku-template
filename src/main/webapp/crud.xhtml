@@ -20,6 +20,8 @@
             </p:panelGrid>
 
             <p:dataTable  var="user" id="usersTable"
+                          rowHover="true"
+                          style="margin-top: 10px;"
                           value="#{crudManagedBean.users}"
                           reflow="true" emptyMessage="No users">
                 <p:column headerText="#"  width="30">
