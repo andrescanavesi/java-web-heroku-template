@@ -3,6 +3,7 @@ package com.example.java.web.heroku.template.util;
 import com.example.java.web.heroku.template.daos.DaoConfigs;
 import com.example.java.web.heroku.template.domain.SalesforceAccessTokenResponse;
 import com.example.java.web.heroku.template.domain.SalesforceErrorResponse;
+import com.example.java.web.heroku.template.exceptions.SaleforceApiException;
 import com.example.java.web.heroku.template.exceptions.SalesforceIpRestrictedException;
 import com.example.java.web.heroku.template.exceptions.SalesforceResponseException;
 import com.google.gson.Gson;
@@ -153,11 +154,16 @@ public class SalesforceApiHelper {
      *
      * @return
      *
-     * @throws com.sforce.ws.ConnectionException
+     * @throws
+     * com.example.java.web.heroku.template.exceptions.SaleforceApiException
      */
-    public GetUserInfoResult requestUserInfo() throws ConnectionException {
+    public GetUserInfoResult requestUserInfo() throws SaleforceApiException {
         LOG.info("Requesting user info...");
-        return partnerConnection.getUserInfo();
+        try {
+            return partnerConnection.getUserInfo();
+        } catch (ConnectionException e) {
+            throw new SaleforceApiException("Error getting user info", e);
+        }
 
     }
 }

@@ -1,12 +1,23 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./WEB-INF/template.xhtml">
+                template="./WEB-INF/template.xhtml"
+                xmlns:p="http://primefaces.org/ui">
 
 
 
     <ui:define name="content">
         Will contain Salesforce API communication examples
+        <p:outputPanel rendered="#{salesforceManagedBean.salesforceAuthenticated}">
+            <p:panelGrid columns="2">
+                <p:outputLabel value="User full name: " />
+                <p:outputLabel value="#{salesforceManagedBean.userInfo.userFullName}" />
+            </p:panelGrid>
+        </p:outputPanel>
+
+        <p:outputPanel rendered="#{not salesforceManagedBean.salesforceAuthenticated}">
+            <p:link href="#{salesforceManagedBean.urlAuthRequestCode}">Login with Salesforce</p:link>
+        </p:outputPanel>
     </ui:define>
 
 
