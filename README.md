@@ -21,4 +21,3 @@ set VAR1=my_var_value
 # TODO
 - List of technologies (Hibernate, Java 8, Primefaces, etc)
 - Heroku deployment (maven plugin and proc file)
-- TODO add SLDS
