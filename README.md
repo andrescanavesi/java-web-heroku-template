@@ -3,6 +3,18 @@
 The idea is to have a template with some common configurations such as necessary files
 for Heroku deployment, JPA (with Hibernate), JSF, Primefacs, Postgres, Maven dependencies / plugins among other things
 
+## Complete list of technologies
+* Java 8
+* Maven 3
+* JSF 2.2.7 for presentation
+* Primefaces 6.1 for presentation
+* JPA 2.1
+* Hibernate 5.2.10
+* Netbeans 8.2
+* Force.com Partner API for Salesforce communication
+* GSON 2.8.0 for serializing / parsing json
+* Postgres SQL for persistence
+* Apache httpcode 4.4 for doing http requests
 
 ## Tomcat environment variables
 
@@ -10,36 +22,27 @@ As I explain [here](https://andrescanavesi.wordpress.com/2017/08/25/define-envir
 Sometimes you want to change the behaviour of your code without recompiling / deploying.
 A way to do this is defining environment variables that you can change at any time.
 
-##Mac and Linux
-Create a file called $TOMCAT_HOME/bin/setenv.sh
+### Mac and Linux
+Create a file called `$TOMCAT_HOME/bin/setenv.sh`
 
 Define the variable like this:
-export VAR1=my_var1_value
-export VAR2=my_var2_value
+
+`export VAR1=my_var1_value`
+
+`export VAR2=my_var2_value`
 
 Give execution permission:
-chmod 755 setenv.sh
 
-##Windows
+`chmod 755 setenv.sh`
 
-Define variables like this
-set VAR1=my_var_value
+### Windows
 
-## Complete list of technologies
-..* Java 8
-..* Maven 3
-..* JSF 2.2.7 for presentation
-..* Primefaces 6.1 for presentation
-..* JPA 2.1
-..* Hibernate 5.2.10
-..* Netbeans 8.2
-..* Force.com Partner API for Salesforce communication
-..* GSON 2.8.0 for serializing / parsing json
-..* Postgres SQL for persistence
-..* Apache httpcode 4.4 for doing http requests
+Define variables like this:
+
+`set VAR1=my_var_value`
 
 
-##Heroku deployment
+## Heroku deployment configurations
 
 In the root you project create a file called *Procfile* with the content
 
