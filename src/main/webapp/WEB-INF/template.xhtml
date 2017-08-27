@@ -25,6 +25,7 @@
         <div id="top">
             <ui:insert name="top">
 
+                <!-- Each ajax request will display a status texts -->
                 <p:ajaxStatus style="display:block;margin-bottom:1em;height:18px;">
                     <f:facet name="default">
                         <h:outputText value="" />
@@ -38,6 +39,10 @@
                         <h:outputText value="" />
                     </f:facet>
                 </p:ajaxStatus>
+
+                <p:menubar>
+                    <p:menuitem value="Home " url="/" icon="ui-icon-home" />
+                </p:menubar>
 
             </ui:insert>
         </div>

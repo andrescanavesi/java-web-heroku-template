@@ -27,14 +27,14 @@ public class AppInitServletListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent event) {
         LOG.log(Level.INFO, "\n***** Initializing {0}", AppInitServletListener.class.getSimpleName());
-        //emf = Persistence.createEntityManagerFactory("myPU");
+        emf = Persistence.createEntityManagerFactory("myPU");
         LOG.info("\n***** App initialized");
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent event) {
         LOG.log(Level.INFO, "\n***** Destroying {0}", AppInitServletListener.class.getSimpleName());
-        //emf.close();
+        emf.close();
         LOG.info("\n***** App destroyed");
     }
 
