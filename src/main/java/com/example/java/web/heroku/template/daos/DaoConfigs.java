@@ -1,35 +1,28 @@
 package com.example.java.web.heroku.template.daos;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * We use environment variables, we do not store in DB so this class does not
  * extends from DaoBase.
  *
  * Go to README file to configure environment variables in Tomcat
  *
+ * In Heroku you can add / edit an environment variable like this:
+ *
+ * heroku config:set CONFIG_1="your_value"
+ *
  * @author Andres Canavesi
  */
 public class DaoConfigs {
+
+    private static final Logger LOG = Logger.getLogger(DaoConfigs.class.getName());
 
     /**
      * There is not public instances of this class
      */
     private DaoConfigs() {
-
-    }
-
-    /**
-     * Example method. IN Heroku you must run this command:
-     *
-     * heroku config:set CONFIG_1="your_value"
-     *
-     * @return
-     */
-    public static String getConfig1() {
-        String value = System.getenv("CONFIG_1");
-        if (value == null) {
-            value = "default_value";
-        }
-        return value;
 
     }
 
@@ -54,7 +47,8 @@ public class DaoConfigs {
     public static String getSalesforceClientId() {
         String value = System.getenv("SALESFORCE_CLIENT_ID");
         if (value == null) {
-            value = "TODO";
+            //since this is a sensitive data we do not return a default value
+            throw new IllegalStateException("SALESFORCE_CLIENT_ID environment variable not found");
         }
         return value;
 
@@ -68,7 +62,8 @@ public class DaoConfigs {
     public static String getSalesforceClientSecret() {
         String value = System.getenv("SALESFORCE_CLIENT_SECRET");
         if (value == null) {
-            value = "TODO";
+            //since this is a sensitive data we do not return a default value
+            throw new IllegalStateException("SALESFORCE_CLIENT_SECRET environment variable not found");
         }
         return value;
     }
@@ -79,7 +74,7 @@ public class DaoConfigs {
      * @return the url to request the code to get the access token. The user
      * must open this url in his browser in order to get the code
      */
-    public static String getUrlAuthRequestCode(boolean isSandbox) {
+    public static String getSalesforceUrlAuthRequestCode(boolean isSandbox) {
         String callbackUrl = DaoConfigs.getSalesforceCallbackUrl();
         String clientId = DaoConfigs.getSalesforceClientId();
         StringBuilder builder = new StringBuilder();
@@ -90,7 +85,9 @@ public class DaoConfigs {
                 .append(clientId)
                 .append("&redirect_uri=")
                 .append(callbackUrl);
-        return builder.toString();
+        String url = builder.toString().trim();
+        LOG.log(Level.INFO, "\nURL for Salesforce oauth: {0}", url);
+        return url;
     }
 
     /**

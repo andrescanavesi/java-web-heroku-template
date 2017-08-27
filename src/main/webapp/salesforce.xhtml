@@ -7,11 +7,25 @@
 
 
     <ui:define name="content">
-        Will contain Salesforce API communication examples
+
         <p:outputPanel rendered="#{salesforceManagedBean.salesforceAuthenticated}">
+            <h1>User authenticated in Salesforce</h1>
             <p:panelGrid columns="2">
                 <p:outputLabel value="User full name: " />
                 <p:outputLabel value="#{salesforceManagedBean.userInfo.userFullName}" />
+
+                <p:outputLabel value="User email: " />
+                <p:outputLabel value="#{salesforceManagedBean.userInfo.userEmail}" />
+
+                <p:outputLabel value="Org id: " />
+                <p:outputLabel value="#{salesforceManagedBean.userInfo.organizationId}" />
+
+                <p:outputLabel value="Org Name: " />
+                <p:outputLabel value="#{salesforceManagedBean.userInfo.organizationName}" />
+
+
+
+
             </p:panelGrid>
         </p:outputPanel>
 

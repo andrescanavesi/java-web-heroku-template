@@ -57,8 +57,9 @@ public class SalesforceOauthServlet extends HttpServlet {
              */
             SalesforceApiHelper salesforceApiHelper = new SalesforceApiHelper();
             //TODO for now we do not support sandbox orgs
-            salesforceApiHelper.requestAccessToken(null, code, false);
-            LOG.info("We are authenticated!");
+            boolean isSandbox = false;
+            salesforceApiHelper.requestAccessToken(null, code, isSandbox);
+            LOG.info("We are Salesforce authenticated!");
 
             //we store salesforceApiHelper instance to use along the web application
             HttpSession httpSession = request.getSession(true);

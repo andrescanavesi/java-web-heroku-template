@@ -90,6 +90,7 @@ public class SalesforceApiHelper {
         } else if (code != null) {
             arguments.put("grant_type", "authorization_code");
             arguments.put("code", code);
+            arguments.put("redirect_uri", DaoConfigs.getSalesforceCallbackUrl());
 
         } else {
             throw new IllegalArgumentException("One 'refreshToken' or 'code' parameters must be not null");
@@ -144,7 +145,7 @@ public class SalesforceApiHelper {
                 if (error.getErrorDescription() != null && error.getErrorDescription().equalsIgnoreCase("ip restricted")) {
                     throw new SalesforceIpRestrictedException();
                 } else {
-                    throw new SalesforceResponseException("Error doing the request. " + responseError + " " + error.getError() + " " + error.getErrorDescription());
+                    throw new SalesforceResponseException("Error doing access token request by code. " + responseError + " " + error.getError() + " " + error.getErrorDescription());
                 }
             }
         }
