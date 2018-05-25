@@ -110,3 +110,11 @@ This plugin is for... well, you know
                 </configuration>
             </plugin>
 ```
+## Worker
+
+The class com.example.java.web.heroku.template.util.MyWorker contains just a main method
+to be called by a Heroku worker dyno through the Profile using this sentence:
+
+```
+worker: java -cp  target/classes:target/dependency/*:target/java-web-heroku-template-1.0-SNAPSHOT/WEB-INF/lib/* com.example.java.web.heroku.template.util.MyWorker ""
+```
