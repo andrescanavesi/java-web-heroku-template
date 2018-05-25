@@ -118,3 +118,15 @@ to be called by a Heroku worker dyno through the Profile using this sentence:
 ```
 worker: java -cp  target/classes:target/dependency/*:target/java-web-heroku-template-1.0-SNAPSHOT/WEB-INF/lib/* com.example.java.web.heroku.template.util.MyWorker ""
 ```
+
+After deploying the web app, scale a worker
+
+```
+$ heroku ps:scale worker=1
+```
+
+Open the logs to see it working
+
+```
+$ heroku logs --tail
+```
